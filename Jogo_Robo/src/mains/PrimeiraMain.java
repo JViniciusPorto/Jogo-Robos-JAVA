@@ -1,60 +1,51 @@
 package mains;
 import classes_robos.Robo;
 import excecoes.MovimentoInvalidoException;
-import java.util.Scanner;
-
+import utilidades.*;
 public class PrimeiraMain {
-        public static void desenharTabuleiro(Robo robozinho, int xAlimento, int yAlimento){
-            for(int y = 3; y >= 0 ; y--){
-                for(int x = 0; x < 4; x++){
-                    if(robozinho.getX() == x && robozinho.getY() == y){
-                        System.out.print("R   ");
-                    } else {
-                        if(xAlimento == x && yAlimento == y){
-                            System.out.print("A   ");
-                        } else{
-                            System.out.print(".   ");
-                        }
-                    }
-                }
-                System.out.println();
-            }
-        }
-
         public static void main(String[] args) {
-            java.util.Scanner scanner = new Scanner(System.in);
+            LeituraTeclado teclado = new LeituraTeclado();
             Robo r = new Robo("azul");
-            
+            Desenho desenhar = new Desenho();
             int posicaoX;
             do{
                 System.out.println("Qual é a posição x do alimento de (0 a 3)?");
-                posicaoX = scanner.nextInt();
+                posicaoX = teclado.lerInteiro();
 
             } while(posicaoX < 0 || posicaoX > 3);
 
             int posicaoY;
             do{
                 System.out.println("Qual é a posição y do alimento de (0 a 3)?");
-                posicaoY = scanner.nextInt();
+                posicaoY = teclado.lerInteiro();
 
             } while(posicaoY < 0 || posicaoY > 3);
 
             while(!r.isEncontrouAlimento(posicaoX, posicaoY)){
-                desenharTabuleiro(r, posicaoX, posicaoY);
-                System.out.println("Qual movimento você quer fazer? (up, down, right,left");
-                String comando = scanner.next();
-                try{
-                    r.mover(comando);
-                } catch(MovimentoInvalidoException e){
-                    System.out.println(e.getMessage());
+                desenhar.desenharTabuleiro(r, posicaoX, posicaoY);
+                System.out.println("Qual movimento você quer fazer? (up/1, down/2, right/3,left/4)");
+                if(teclado.isInteiro()){
+                    int comandoInteiro = teclado.lerInteiro();
+                    try{
+                        r.mover(comandoInteiro);
+                    } catch(MovimentoInvalidoException e){
+                        System.out.println(e.getMessage());
+                    }
+                }else{
+                   String comandoString = teclado.lerString(); 
+                   try{
+                        r.mover(comandoString);
+                    } catch(MovimentoInvalidoException e){
+                        System.out.println(e.getMessage());
 
+                    }
                 }
 
 
             }
 
-            desenharTabuleiro(r, posicaoX, posicaoY);
-            System.out.println("O Robo : " + r.getCor() + " encontrou o alimento");
+            desenhar.desenharTabuleiro(r, posicaoX, posicaoY);
+            System.out.println("O Robô " + r.getCor() + " encontrou o alimento!");
 
         }
     

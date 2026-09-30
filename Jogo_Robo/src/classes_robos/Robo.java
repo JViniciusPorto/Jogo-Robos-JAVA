@@ -94,16 +94,8 @@ public class Robo {
     public void mover() throws MovimentoInvalidoException {
         String[] movimentos = { "up", "down", "right", "left" };
         Random random = new Random();
-
-        while (true) {
-            String movimento = movimentos[random.nextInt(movimentos.length)];
-            try {
-                mover(movimento);
-                return; // movimento válido, encerra a jogada
-            } catch (MovimentoInvalidoException e) {
-                // tenta outro movimento aleatório
-            }
-        }
+        String movimento = movimentos[random.nextInt(4)];
+        mover(movimento);
     }
 
     public int getMovimentosInvalido(){
