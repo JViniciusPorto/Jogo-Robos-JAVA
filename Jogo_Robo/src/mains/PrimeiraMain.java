@@ -1,23 +1,19 @@
 package mains;
 import classes_robos.Robo;
-import classes_robos.RoboInteligente;
-import classes_obstaculos.ObstaculoBomba;
-import classes_obstaculos.ObstaculoRocha;
 import excecoes.MovimentoInvalidoException;
 import java.util.Scanner;
-import org.xml.sax.SAXException;
 
 public class PrimeiraMain {
         public static void desenharTabuleiro(Robo robozinho, int xAlimento, int yAlimento){
             for(int y = 3; y >= 0 ; y--){
                 for(int x = 0; x < 4; x++){
                     if(robozinho.getX() == x && robozinho.getY() == y){
-                        System.out.print("R");
+                        System.out.print("R   ");
                     } else {
                         if(xAlimento == x && yAlimento == y){
-                            System.out.print("A");
+                            System.out.print("A   ");
                         } else{
-                            System.out.print(".");
+                            System.out.print(".   ");
                         }
                     }
                 }

@@ -12,7 +12,7 @@ public class RoboInteligente extends Robo {
     }
 
     @Override
-    public void mover(int comando) throws MovimentoInvalidoException {
+    public void mover() throws MovimentoInvalidoException {
         List<String> disponiveis = new ArrayList<>(List.of("up", "down", "right", "left"));
         Random random = new Random();
 
