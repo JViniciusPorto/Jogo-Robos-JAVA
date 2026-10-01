@@ -1,5 +1,9 @@
 package utilidades;
 import java.util.Arrays;
+import java.util.List;
+
+import classes_obstaculos.Obstaculo;
+import classes_obstaculos.ObstaculoBomba;
 import classes_robos.*;
 public class Desenho {
 
@@ -43,4 +47,39 @@ public class Desenho {
         }
         System.out.println();
     }
+
+
+    public void desenharTabuleiro(Robo robo1, Robo robo2, List<Obstaculo> Obstaculos, int xAlimento, int yAlimento){
+        String[][] grade = new String[4][4]; //[y][x]
+        for(String linha[] : grade){
+            Arrays.fill(linha, ".");
+        }
+
+        for(Obstaculo obstaculo : Obstaculos){
+            if(obstaculo instanceof ObstaculoBomba){
+                grade[obstaculo.getY()][obstaculo.getX()] = "B";
+            } else {
+                grade[obstaculo.getY()][obstaculo.getX()] = "P";
+            }
+        }
+
+        grade[yAlimento][xAlimento] = "A";
+
+        if(robo1.getX() == robo2.getX() && robo1.getY() == robo2.getY()){
+            grade[robo1.getY()][robo1.getX()] = "R1R2";
+        } else {
+            grade[robo1.getY()][robo1.getX()] = "R1";
+            grade[robo2.getY()][robo2.getX()] = "R2";
+        }
+
+        for(int y = 3; y >= 0 ; y--){
+            for(int x = 0; x < 4; x++){
+                System.out.printf("%-6s", grade[y][x]);
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+
+  }
 }
