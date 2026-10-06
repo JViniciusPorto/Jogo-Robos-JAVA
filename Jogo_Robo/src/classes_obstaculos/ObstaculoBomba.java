@@ -8,7 +8,7 @@ public class ObstaculoBomba extends Obstaculo{
     @Override
     public void bater(Robo robo) {
         robo.setIsPodeMover(false);
-        System.out.println("Robô pisou em uma bomba!");
+        System.out.println("Robô "+robo.getCor()+" pisou em uma bomba!");
         System.out.println("Robô "+robo.getCor()+" explodiu!");
     }
 }

@@ -31,18 +31,20 @@ public class QuartaMain {
         boolean posicaoValida;
 
         while(true){
+            System.out.println("Digite a posição x do alimento (0 a 3):");
             posicaoX = teclado.lerInteiro();
             if(posicaoX<0 || posicaoX>3){
                 System.out.println("Digite um inteiro entre [0,3]!");
                 continue;
             }
+            System.out.println("Digite a posição y do alimento (0 a 3):");
             posicaoY = teclado.lerInteiro();
             if(posicaoY<0 || posicaoY>3){
                 System.out.println("Digite um inteiro entre [0,3]!");
                 continue;
             }
             if(posicaoX==0 && posicaoY==0){
-                System.out.println("Não pode colocar o alimento em (0,0)!");
+                System.out.println("Você não pode colocar o alimento em (0,0)!");
                 continue;
             }
             break;
@@ -95,13 +97,10 @@ public class QuartaMain {
                     System.out.println("Você não pode colocar a rocha em (0,0)!");
                     posicaoValida = false;
                 }else if(existeObstaculo(obstaculos, xRocha, yRocha)){
-                    System.out.println("Já existe obstáculo nessa posição!");
-                    posicaoValida = false;
-                }else if(alimentoCercado(obstaculos, posicaoX, posicaoY, xRocha, yRocha)){
-                    System.out.println("Se colocar essa rocha nessa posição, você estará cercando o alimento!");
+                    System.out.println("Já existe um obstáculo nessa posição!");
                     posicaoValida = false;
                 }
-            }while((xRocha==posicaoX && yRocha==posicaoY) || (xRocha==0 && yRocha==0));
+            }while(posicaoValida);
             obstaculos.add(new ObstaculoRocha(xRocha, yRocha));
         }
 
@@ -110,7 +109,7 @@ public class QuartaMain {
         System.out.println("R2 - Robô Inteligente - "+roboInteligente.getCor());
         System.out.println("B - Bomba");
         System.out.println("P - Rocha");
-        System.out.println(" X - Robô explodiu");
+        System.out.println("X - Robô explodiu");
         System.out.println("===================================");
         System.out.println("Início da Partida:");
         desenhar.desenharTabuleiro(roboNormal, roboInteligente, obstaculos, posicaoX, posicaoY);
@@ -194,35 +193,6 @@ public class QuartaMain {
             }
         }
         return false;
-    }
-
-    private static boolean alimentoCercado(List<Obstaculo> obstaculos, int alimentoX, int alimentoY, int novaRochaX, int novaRochaY) {
-
-        int[][] vizinhos = {
-            {alimentoX + 1, alimentoY},
-            {alimentoX - 1, alimentoY},
-            {alimentoX, alimentoY + 1},
-            {alimentoX, alimentoY - 1}
-        };
-
-        int bloqueados = 0;
-
-        for (int[] vizinho : vizinhos) {
-
-            int x = vizinho[0];
-            int y = vizinho[1];
-            if (x < 0 || x > 3 || y < 0 || y > 3) {
-                bloqueados++;
-            }
-            else if (x == novaRochaX && y == novaRochaY) {
-                bloqueados++;
-            }
-            else if (existeObstaculo(obstaculos, x, y)) {
-                bloqueados++;
-            }
-        }
-
-        return bloqueados == 4;
     }
 }
 
