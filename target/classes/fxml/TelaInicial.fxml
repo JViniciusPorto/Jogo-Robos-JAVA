@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+    TELA INICIAL: o jogador escolhe um dos quatro modos.
+    Cada botão chama um método do TelaInicialController (onAction).
+    Todo o visual (cores, fontes, bordas) está nos arquivos CSS, não aqui.
+-->
+<StackPane fx:id="raiz" styleClass="fundo" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="trabalhos.interfaces.TelaInicialController">
+
+    <stylesheets>
+        <URL value="@../css/principal.css" />
+        <URL value="@../css/menu.css" />
+    </stylesheets>
+
+    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="580.0" spacing="16.0">
+
+        <!-- Título. O controller coloca uma esfera do dragão de cada lado (não é preciso mexer aqui). -->
+        <HBox fx:id="caixaTitulo" alignment="CENTER" spacing="18.0">
+            <VBox alignment="CENTER" spacing="2.0">
+                <Label styleClass="titulo-grande" text="JOGO DOS ROBÔS" />
+                <Label styleClass="subtitulo" text="Escolha o modo de jogo" />
+            </VBox>
+        </HBox>
+
+        <!-- Modo 1 = PrimeiraMain -->
+        <Button maxWidth="Infinity" onAction="#escolherSolo" styleClass="botao-modo">
+            <graphic>
+                <VBox spacing="2.0">
+                    <Label styleClass="modo-titulo" text="1. ROBÔ SOLO" />
+                    <Label styleClass="modo-descricao" text="Controle seu próprio robô até o alimento" />
+                </VBox>
+            </graphic>
+        </Button>
+
+        <!-- Modo 2 = SegundaMain -->
+        <Button maxWidth="Infinity" onAction="#escolherDoisRobos" styleClass="botao-modo">
+            <graphic>
+                <VBox spacing="2.0">
+                    <Label styleClass="modo-titulo" text="2. DOIS ROBÔS" />
+                    <Label styleClass="modo-descricao" text="Dois robôs se movimentam automaticamente" />
+                </VBox>
+            </graphic>
+        </Button>
+
+        <!-- Modo 3 = TerceiraMain -->
+        <Button maxWidth="Infinity" onAction="#escolherRoboInteligente" styleClass="botao-modo">
+            <graphic>
+                <VBox spacing="2.0">
+                    <Label styleClass="modo-titulo" text="3. ROBÔ INTELIGENTE" />
+                    <Label styleClass="modo-descricao" text="Enfrente o robô inteligente" />
+                </VBox>
+            </graphic>
+        </Button>
+
+        <!-- Modo 4 = QuartaMain -->
+        <Button maxWidth="Infinity" onAction="#escolherArena" styleClass="botao-modo">
+            <graphic>
+                <VBox spacing="2.0">
+                    <Label styleClass="modo-titulo" text="4. ARENA" />
+                    <Label styleClass="modo-descricao" text="Robôs + bombas (Saibamans) + rochas" />
+                </VBox>
+            </graphic>
+        </Button>
+
+    </VBox>
+</StackPane>

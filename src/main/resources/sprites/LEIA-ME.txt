@@ -1,0 +1,22 @@
+SPRITES DO JOGO DOS ROBOS
+=========================
+Todos os arquivos ficam em src/main/resources/sprites/ e os caminhos estao em
+trabalhos/visual/Sprites.java. Se algum arquivo faltar, o jogo usa um desenho simples no lugar.
+
+goku.png / vegeta.png / saibaman.png
+    Grade de 4 colunas (4 frames de caminhada) x 4 linhas (direcoes).
+    Ordem das linhas, de cima para baixo: CIMA, BAIXO, ESQUERDA, DIREITA
+    (a mesma ordem da enumeracao Direcao). Cada celula e quadrada (160x160 nos
+    personagens, 256x256 no saibaman) e o tamanho e calculado automaticamente.
+    CIMA = personagem de costas (andando para o topo da tela).
+
+saibaman_ativacao.png   4 frames em uma linha (Saibaman se ativando)
+explosao.png            6 frames em uma linha (clarao ate a cratera)
+esfera.png              imagem unica - alimento (esfera do dragao de 4 estrelas)
+rocha.png               imagem unica - rocha
+arena.jpg               cenario quadrado; o piso do tabuleiro ocupa 73,75% do lado,
+                        comecando a 13,08% da borda (constantes ARENA_INICIO e ARENA_LADO
+                        em TabuleiroView.java - ajuste-as se trocar a imagem).
+
+Observacao: esfera.png e rocha.png foram desenhadas por codigo (nao vieram nos arquivos
+enviados). Pode substituir por qualquer PNG quadrado com fundo transparente.

@@ -1,0 +1,36 @@
+/* =====================================================================
+   menu.css - tela inicial (os quatro botões de modo).
+   ===================================================================== */
+
+/* Botão grande de modo: texto alinhado à esquerda e uma faixa laranja na lateral */
+.botao-modo {
+    -fx-background-color: linear-gradient(to bottom, #1b3a72, #11264d);
+    -fx-background-radius: 14;
+    -fx-border-color: #3e6bc4 #3e6bc4 #3e6bc4 #ff8a00;
+    -fx-border-width: 2 2 2 8;
+    -fx-border-radius: 14;
+    -fx-alignment: center-left;
+    -fx-padding: 14 22 14 22;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.55), 12, 0.25, 0, 3);
+}
+
+.botao-modo:hover {
+    -fx-background-color: linear-gradient(to bottom, #2a52a0, #183569);
+    -fx-border-color: #ffd23f #ffd23f #ffd23f #ffb300;
+    -fx-effect: dropshadow(gaussian, #ff8a00, 18, 0.35, 0, 0);
+}
+
+.botao-modo:pressed {
+    -fx-background-color: linear-gradient(to bottom, #11264d, #0d1d3b);
+}
+
+.modo-titulo {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -cor-amarelo;
+}
+
+.modo-descricao {
+    -fx-font-size: 13px;
+    -fx-text-fill: -cor-texto;
+}

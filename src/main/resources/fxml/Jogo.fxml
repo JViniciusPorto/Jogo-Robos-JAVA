@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+    TELA DO JOGO (igual para os quatro modos).
+
+      topo    : nome do modo e mensagem de status ("Goku está pensando...")
+      centro  : o tabuleiro (o JogoController adiciona o TabuleiroView dentro de areaTabuleiro)
+                e, por cima, o painel de resultado (escondido até o jogo terminar)
+      direita : cartões dos robôs, controles do modo solo e lista de eventos
+      base    : botões Voltar / Pausar / Novo Jogo
+-->
+<BorderPane fx:id="raiz" styleClass="fundo" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="trabalhos.interfaces.JogoController">
+
+    <stylesheets>
+        <URL value="@../css/principal.css" />
+        <URL value="@../css/jogo.css" />
+    </stylesheets>
+
+    <padding>
+        <Insets bottom="14.0" left="16.0" right="16.0" top="12.0" />
+    </padding>
+
+    <!-- ===== TOPO ===== -->
+    <top>
+        <VBox alignment="CENTER" spacing="2.0">
+            <Label fx:id="rotuloModo" styleClass="titulo-medio" text="MODO" />
+            <Label fx:id="rotuloStatus" styleClass="status" text="Preparando o jogo..." />
+        </VBox>
+    </top>
+
+    <!-- ===== CENTRO: tabuleiro + painel de resultado por cima ===== -->
+    <center>
+        <StackPane fx:id="areaTabuleiro" minHeight="240.0" minWidth="240.0">
+            <padding>
+                <Insets bottom="6.0" left="6.0" right="12.0" top="6.0" />
+            </padding>
+
+            <!-- Painel de fim de jogo (vitória / empate) -->
+            <VBox fx:id="painelResultado" alignment="CENTER" managed="false" maxHeight="-Infinity" maxWidth="460.0"
+                  spacing="10.0" styleClass="painel-resultado" visible="false">
+                <Label fx:id="tituloResultado" styleClass="titulo-resultado" wrapText="true" />
+                <Label fx:id="mensagemResultado" styleClass="mensagem-resultado" wrapText="true" />
+                <Label styleClass="secao" text="ESTATÍSTICAS" />
+                <Label fx:id="estatisticasResultado" styleClass="estatisticas" wrapText="true" />
+                <HBox alignment="CENTER" spacing="12.0">
+                    <Button onAction="#novoJogo" text="Novo Jogo" />
+                    <Button onAction="#voltar" styleClass="botao-secundario" text="Menu" />
+                </HBox>
+            </VBox>
+        </StackPane>
+    </center>
+
+    <!-- ===== DIREITA ===== -->
+    <right>
+        <VBox prefWidth="380.0" spacing="8.0">
+
+            <Label styleClass="secao" text="ROBÔS" />
+            <VBox fx:id="areaRobos" spacing="8.0" />
+
+            <!-- Controles manuais: só aparecem no modo solo -->
+            <VBox fx:id="painelControles" spacing="6.0">
+                <Label styleClass="secao" text="CONTROLES" />
+                <Label styleClass="instrucoes" wrapText="true"
+                       text="Setas (ou W A S D) ou números: 1 up, 2 down, 3 right, 4 left." />
+                <GridPane alignment="CENTER" hgap="6.0" vgap="6.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" minWidth="64.0" />
+                        <ColumnConstraints halignment="CENTER" minWidth="64.0" />
+                        <ColumnConstraints halignment="CENTER" minWidth="64.0" />
+                    </columnConstraints>
+                    <Button onAction="#comandarCima" styleClass="botao-direcao" text="▲ 1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    <Button onAction="#comandarEsquerda" styleClass="botao-direcao" text="◀ 4" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <Button onAction="#comandarDireita" styleClass="botao-direcao" text="▶ 3" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <Button onAction="#comandarBaixo" styleClass="botao-direcao" text="▼ 2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                </GridPane>
+            </VBox>
+
+            <Label styleClass="secao" text="EVENTOS" />
+            <ListView fx:id="listaEventos" prefHeight="160.0" VBox.vgrow="ALWAYS" />
+        </VBox>
+    </right>
+
+    <!-- ===== BASE ===== -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="14.0">
+            <padding>
+                <Insets top="10.0" />
+            </padding>
+            <Button onAction="#voltar" styleClass="botao-secundario" text="Voltar" />
+            <Button fx:id="botaoPausar" onAction="#alternarPausa" text="Pausar" />
+            <Button onAction="#novoJogo" styleClass="botao-secundario" text="Novo Jogo" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

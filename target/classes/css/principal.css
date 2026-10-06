@@ -1,0 +1,152 @@
+/* =====================================================================
+   principal.css - estilo BASE, carregado por todas as telas.
+   Tema: Dragon Ball / arena de batalha (azul-noite, laranja, amarelo).
+
+   As cores são definidas uma vez em ".root" e reutilizadas pelo nome
+   (cores nomeadas do JavaFX CSS). Para mudar o tema inteiro, edite aqui.
+   ===================================================================== */
+
+.root {
+    -cor-noite: #0b1730;
+    -cor-azul: #2f6df6;
+    -cor-azul-claro: #6f9bff;
+    -cor-laranja: #ff8a00;
+    -cor-amarelo: #ffd23f;
+    -cor-vermelho: #e63946;
+    -cor-texto: #f4f1e8;
+    -cor-painel: rgba(8, 16, 34, 0.80);
+
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: -cor-texto;
+}
+
+/* Fundo de todas as telas: céu azul-noite com um brilho no topo */
+.fundo {
+    -fx-background-color: radial-gradient(center 50% 0%, radius 110%, #25497f 0%, #0f2145 55%, #0b1730 100%);
+}
+
+/* ---------- Textos ---------- */
+
+.label {
+    -fx-text-fill: -cor-texto;
+}
+
+.titulo-grande {
+    -fx-font-size: 46px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to bottom, #fff3a0, #ffb300);
+    -fx-effect: dropshadow(gaussian, #ff6a00, 16, 0.45, 0, 0);
+}
+
+.titulo-medio {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to bottom, #fff3a0, #ffb300);
+    -fx-effect: dropshadow(gaussian, #ff6a00, 10, 0.4, 0, 0);
+}
+
+.subtitulo {
+    -fx-font-size: 16px;
+    -fx-text-fill: -cor-azul-claro;
+}
+
+.secao {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -cor-amarelo;
+}
+
+/* ---------- Botões (laranja é o padrão; ".botao-secundario" é o azul) ---------- */
+
+.button {
+    -fx-background-color: linear-gradient(#ffc04d, #ff8a00);
+    -fx-background-radius: 10;
+    -fx-border-color: #7a3b00;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-text-fill: #2b1500;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 22 8 22;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.45), 8, 0.2, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#ffd27a, #ff9d1f);
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(#ff8a00, #e07400);
+    -fx-translate-y: 1;
+}
+
+.button:disabled {
+    -fx-opacity: 0.45;
+}
+
+.botao-secundario {
+    -fx-background-color: linear-gradient(#5f8dff, #2f6df6);
+    -fx-border-color: #12327a;
+    -fx-text-fill: white;
+}
+
+.botao-secundario:hover {
+    -fx-background-color: linear-gradient(#7aa0ff, #4379ff);
+}
+
+.botao-secundario:pressed {
+    -fx-background-color: linear-gradient(#2f6df6, #2559c9);
+}
+
+/* ---------- Campos de formulário ---------- */
+
+.text-field {
+    -fx-background-color: #0f2145;
+    -fx-background-radius: 8;
+    -fx-border-color: #3e6bc4;
+    -fx-border-radius: 8;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #7f93bd;
+    -fx-padding: 7 10 7 10;
+}
+
+.text-field:focused {
+    -fx-border-color: -cor-amarelo;
+}
+
+.choice-box {
+    -fx-background-color: #0f2145;
+    -fx-background-radius: 8;
+    -fx-border-color: #3e6bc4;
+    -fx-border-radius: 8;
+}
+
+.choice-box .label {
+    -fx-text-fill: white;
+}
+
+/* ---------- Lista de eventos ---------- */
+
+.list-view {
+    -fx-background-color: -cor-painel;
+    -fx-background-radius: 10;
+    -fx-border-color: #3e6bc4;
+    -fx-border-radius: 10;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -cor-texto;
+    -fx-font-size: 12.5px;
+    -fx-padding: 4 8 4 8;
+}
+
+.list-cell:odd {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+
+.list-cell:empty {
+    -fx-background-color: transparent;
+}

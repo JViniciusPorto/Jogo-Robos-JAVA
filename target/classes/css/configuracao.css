@@ -1,0 +1,30 @@
+/* =====================================================================
+   configuracao.css - tela de configuração do jogo.
+   ===================================================================== */
+
+/* Cartão central do formulário */
+.cartao-config {
+    -fx-background-color: -cor-painel;
+    -fx-background-radius: 18;
+    -fx-border-color: -cor-laranja;
+    -fx-border-width: 3;
+    -fx-border-radius: 18;
+    -fx-padding: 26 34 26 34;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 22, 0.3, 0, 6);
+}
+
+.campo-rotulo {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -cor-amarelo;
+}
+
+.campo-dica {
+    -fx-text-fill: -cor-texto;
+}
+
+/* Mensagem de validação (nome vazio, etc.) */
+.erro {
+    -fx-text-fill: #ff7b86;
+    -fx-font-weight: bold;
+}

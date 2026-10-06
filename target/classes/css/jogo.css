@@ -1,0 +1,119 @@
+/* =====================================================================
+   jogo.css - tela do jogo: cartões dos robôs, controles e resultado.
+   ===================================================================== */
+
+/* Linha de status no topo ("Goku está pensando...") */
+.status {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -cor-texto;
+}
+
+/* ---------- Cartão de cada robô ---------- */
+
+.cartao-robo {
+    -fx-background-color: -cor-painel;
+    -fx-background-radius: 12;
+    -fx-border-width: 2 2 2 8;
+    -fx-border-radius: 12;
+    -fx-padding: 8 12 8 12;
+}
+
+/* jogador 1 = Goku (laranja) e jogador 2 = Vegeta (azul) */
+.cartao-robo.p1 {
+    -fx-border-color: #ff8a00;
+}
+
+.cartao-robo.p2 {
+    -fx-border-color: #2f6df6;
+}
+
+/* cartão de quem joga agora: brilho amarelo */
+.cartao-robo.ativo {
+    -fx-effect: dropshadow(gaussian, #ffd23f, 18, 0.45, 0, 0);
+    -fx-background-color: rgba(30, 52, 100, 0.85);
+}
+
+.cartao-nome {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.cartao-tipo {
+    -fx-font-size: 12px;
+    -fx-text-fill: -cor-azul-claro;
+}
+
+.cartao-situacao {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -cor-amarelo;
+}
+
+.cartao-detalhe {
+    -fx-font-size: 12.5px;
+    -fx-text-fill: -cor-texto;
+}
+
+/* ---------- Controles do modo solo ---------- */
+
+.instrucoes {
+    -fx-font-size: 12.5px;
+    -fx-text-fill: -cor-texto;
+}
+
+.botao-direcao {
+    -fx-min-width: 64;
+    -fx-min-height: 44;
+    -fx-font-size: 16px;
+    -fx-padding: 4 8 4 8;
+}
+
+/* ---------- Painel de fim de jogo ---------- */
+
+.painel-resultado {
+    -fx-background-color: rgba(7, 14, 30, 0.93);
+    -fx-background-radius: 18;
+    -fx-border-color: -cor-amarelo;
+    -fx-border-width: 3;
+    -fx-border-radius: 18;
+    -fx-padding: 26 36 26 36;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 26, 0.4, 0, 6);
+}
+
+.titulo-resultado {
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -cor-amarelo;
+    -fx-effect: dropshadow(gaussian, #ff6a00, 14, 0.4, 0, 0);
+    -fx-text-alignment: center;
+}
+
+/* empate: título e borda em vermelho */
+.painel-resultado.empate {
+    -fx-border-color: -cor-vermelho;
+}
+
+.painel-resultado.empate .titulo-resultado {
+    -fx-text-fill: #ff6b6b;
+    -fx-effect: dropshadow(gaussian, #b3121f, 14, 0.4, 0, 0);
+}
+
+.mensagem-resultado {
+    -fx-font-size: 15px;
+    -fx-text-fill: -cor-texto;
+    -fx-text-alignment: center;
+}
+
+.estatisticas {
+    -fx-font-size: 14px;
+    -fx-text-fill: -cor-texto;
+    -fx-text-alignment: center;
+}
+
+/* vitória: borda e brilho dourados (o título já é dourado por padrão) */
+.painel-resultado.vitoria {
+    -fx-border-color: -cor-amarelo;
+    -fx-effect: dropshadow(gaussian, #ffb300, 26, 0.45, 0, 0);
+}
