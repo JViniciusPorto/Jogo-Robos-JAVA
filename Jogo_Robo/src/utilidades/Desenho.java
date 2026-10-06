@@ -71,7 +71,15 @@ public class Desenho {
             grade[robo1.getY()][robo1.getX()] = "R1";
             grade[robo2.getY()][robo2.getX()] = "R2";
         }
-
+        for (Obstaculo obstaculo : Obstaculos) {
+            if(obstaculo instanceof ObstaculoBomba){
+                if(robo1.getX()==obstaculo.getX() && robo1.getY()==obstaculo.getY()){
+                    grade[robo1.getY()][robo1.getX()] = "X";
+                }else if(robo2.getX()==obstaculo.getX() && robo2.getY()==obstaculo.getY()){
+                    grade[robo2.getY()][robo2.getY()] = "X";
+                }
+            }
+        }
         for(int y = 3; y >= 0 ; y--){
             for(int x = 0; x < 4; x++){
                 System.out.printf("%-6s", grade[y][x]);
@@ -80,6 +88,5 @@ public class Desenho {
         }
 
         System.out.println();
-
   }
 }

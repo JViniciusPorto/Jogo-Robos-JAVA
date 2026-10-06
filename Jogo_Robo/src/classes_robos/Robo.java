@@ -7,7 +7,6 @@ public class Robo {
     private int y;
     private int xAnterior;
     private int yAnterior;
-    private boolean isVencedor = false;
     private boolean isPodeMover = true;
     private int movimentosInvalido = 0;
     private int movimentosValidos = 0;
@@ -24,7 +23,7 @@ public class Robo {
             case "up":
                 if(this.y+1>3){
                     this.movimentosInvalido++;
-                    throw new MovimentoInvalidoException("Movimento Inválido: Up");
+                    throw new MovimentoInvalidoException("O robô "+getCor()+" fez um movimento Inválido: Up");
                 }
                 this.xAnterior = this.x;
                 this.yAnterior = this.y;
@@ -35,7 +34,7 @@ public class Robo {
             case "down":
                 if(this.y-1<0){
                     this.movimentosInvalido++;
-                    throw new MovimentoInvalidoException("Movimento Inválido: Down");
+                    throw new MovimentoInvalidoException("O robô "+getCor()+" fez um movimento Inválido: Down");
                 }
                 this.xAnterior = this.x;
                 this.yAnterior = this.y;
@@ -46,7 +45,7 @@ public class Robo {
             case "right":
                 if(this.x+1>3){
                     this.movimentosInvalido++;
-                    throw new MovimentoInvalidoException("Movimento Inválido: Right");
+                    throw new MovimentoInvalidoException("O robô "+getCor()+" fez um movimento Inválido: Right");
                 }
                 this.xAnterior = this.x;
                 this.yAnterior = this.y;
@@ -57,7 +56,7 @@ public class Robo {
             case "left":
                 if(this.x-1<0){
                     this.movimentosInvalido++;
-                    throw new MovimentoInvalidoException("Movimento Inválido: Left");
+                    throw new MovimentoInvalidoException("O robô "+getCor()+" fez um movimento Inválido: Left");
                 }
                 this.xAnterior = this.x;
                 this.yAnterior = this.y;
@@ -66,8 +65,8 @@ public class Robo {
                 System.out.println("Posição Atual do Robô "+getCor()+": ("+this.x+","+this.y+")");
                 break;
             default:
-                System.out.println("Comando Inválido!");
-                break;
+                this.movimentosInvalido++;
+                throw new MovimentoInvalidoException("O robô "+getCor()+" fez um movimento Inválido: Comando inválido - "+comando);
         }
     }
 
@@ -86,8 +85,7 @@ public class Robo {
                 mover("left");
                 break;
             default:
-                System.out.println("Comando Inválido!");
-                break;
+                throw new MovimentoInvalidoException("O robô "+getCor()+" fez um movimento Inválido: Comando inválido - "+comando);
         }
     }
 
@@ -129,15 +127,8 @@ public class Robo {
         return this.cor;
     }
 
-    public boolean getIsVencedor(){
-        return this.isVencedor;
-    }
-
     public boolean getIsPodeMover(){
         return this.isPodeMover;
-    }
-    public void setIsVencedor(boolean estado){
-        this.isVencedor = estado;
     }
 
     public void setIsPodeMover(boolean estado){

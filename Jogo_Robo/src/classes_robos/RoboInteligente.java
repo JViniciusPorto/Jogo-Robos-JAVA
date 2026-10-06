@@ -1,10 +1,10 @@
 package classes_robos;
-
+import java.util.ArrayList;
 import java.util.Random;
 import excecoes.MovimentoInvalidoException;
 
 public class RoboInteligente extends Robo {
-    private String ultimoMovimentoInvalido = null;
+    private ArrayList<String> movimentosInvalidos = new ArrayList<>(); 
 
     public RoboInteligente(String cor) {
         super(cor);
@@ -15,15 +15,26 @@ public class RoboInteligente extends Robo {
         String[] listaMovimentos = {"up","down","right","left"};
         Random sortear = new Random();
         String movimento;
+        boolean estaNaLista = false;
         do{
             movimento = listaMovimentos[sortear.nextInt(4)];
-        }while(movimento.equals(ultimoMovimentoInvalido));
+            for (String historico : movimentosInvalidos) {
+                if(historico.equals(movimento)){
+                    estaNaLista = true;
+                    break;
+                }
+            }
+        }while(estaNaLista);
 
         try {
             mover(movimento);
-            ultimoMovimentoInvalido = null;
         } catch (MovimentoInvalidoException e) {
-            ultimoMovimentoInvalido = movimento;
+            movimentosInvalidos.add(movimento);
+            if(movimentosInvalidos.size()==4){
+                movimentosInvalidos.remove(0);
+                movimentosInvalidos.remove(1);
+                movimentosInvalidos.remove(2);
+            }
             throw e;
         }
     }

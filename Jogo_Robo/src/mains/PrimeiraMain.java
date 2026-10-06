@@ -8,18 +8,28 @@ public class PrimeiraMain {
             Robo r = new Robo("azul");
             Desenho desenhar = new Desenho();
             int posicaoX;
-            do{
-                System.out.println("Qual é a posição x do alimento de (0 a 3)?");
-                posicaoX = teclado.lerInteiro();
-
-            } while(posicaoX < 0 || posicaoX > 3);
-
             int posicaoY;
             do{
-                System.out.println("Qual é a posição y do alimento de (0 a 3)?");
-                posicaoY = teclado.lerInteiro();
+                do{
+                    System.out.println("Qual é a posição x do alimento de (0 a 3)?");
+                    posicaoX = teclado.lerInteiro();
+                    if(posicaoX<0 || posicaoX>3){
+                        System.out.println("Digite um inteiro entre [0,3]!");
+                    }
+                } while(posicaoX < 0 || posicaoX > 3);
 
-            } while(posicaoY < 0 || posicaoY > 3);
+                
+                do{
+                    System.out.println("Qual é a posição y do alimento de (0 a 3)?");
+                    posicaoY = teclado.lerInteiro();
+                    if(posicaoY<0 || posicaoY>3){
+                        System.out.println("Digite um inteiro entre [0,3]!");
+                    }
+                } while(posicaoY < 0 || posicaoY > 3);
+                if(posicaoX==0 && posicaoY==0){
+                    System.out.println("Você não pode colocar o alimento em (0,0)!");
+                }
+            }while(posicaoX==0 && posicaoY==0);
 
             while(!r.isEncontrouAlimento(posicaoX, posicaoY)){
                 desenhar.desenharTabuleiro(r, posicaoX, posicaoY);

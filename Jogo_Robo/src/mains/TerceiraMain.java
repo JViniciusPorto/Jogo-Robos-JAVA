@@ -19,29 +19,46 @@ public class TerceiraMain {
         int posicaoY;
         boolean jogoAtivo = true;
         do{
-            System.out.println("Digite a posição x do alimento (0 a 3):");
-            posicaoX = teclado.lerInteiro();
-        }while(posicaoX<0 || posicaoX>3);
+            do{
+                System.out.println("Digite a posição x do alimento (0 a 3):");
+                posicaoX = teclado.lerInteiro();
+                if(posicaoX<0 || posicaoX>3){
+                    System.out.println("Digite um inteiro entre [0,3]!");
+                }
+            }while(posicaoX<0 || posicaoX>3);
 
-        do{
-            System.out.println("Digite a posição y do alimento (0 a 3):");
-            posicaoY = teclado.lerInteiro();
-        }while(posicaoY<0 || posicaoY>3);
+            do{
+                System.out.println("Digite a posição y do alimento (0 a 3):");
+                posicaoY = teclado.lerInteiro();
+                if(posicaoY<0 || posicaoY>3){
+                    System.out.println("Digite um inteiro entre [0,3]!");
+                }
+            }while(posicaoY<0 || posicaoY>3);
+            if(posicaoX==0 && posicaoY==0){
+                System.out.println("Você não pode colocar o alimento em (0,0)!");
+            }
+        }while (posicaoX==0 && posicaoY==0);
+        System.out.println("==============Legenda==============");
+        System.out.println("R1 - Robô Normal - "+roboNormal.getCor());
+        System.out.println("R2 - Robô Inteligente - "+roboInteligente.getCor());
+        System.out.println("===================================");
+        System.out.println("Início da Partida:");
         desenhar.desenharTabuleiro(roboNormal, roboInteligente, posicaoX, posicaoY);
+        
         while(jogoAtivo){
-            esperar.aguardar(800);
-
             if(robos.get(vezDe).getIsPodeMover()){
+                esperar.aguardar(800);
+                System.out.println("Vez do "+robos.get(vezDe).getCor()+"!");
                 try{
                     robos.get(vezDe).mover();
                 }catch(MovimentoInvalidoException e){
                     System.out.println(e.getMessage());
                 }
+                if(robos.get(vezDe).isEncontrouAlimento(posicaoX, posicaoY)){
+                    robos.get(vezDe).setIsPodeMover(false);
+                    System.out.println("Robô "+robos.get(vezDe).getCor()+" encontrou o alimento!");
+                }
                 desenhar.desenharTabuleiro(roboNormal, roboInteligente, posicaoX, posicaoY);
-            }
-            if(robos.get(vezDe).isEncontrouAlimento(posicaoX, posicaoY)){
-                robos.get(vezDe).setIsPodeMover(false);
-                System.out.println("Robô "+robos.get(vezDe).getCor()+" encontrou o alimento!");
             }
             vezDe = (vezDe +1)%robos.size();
             jogoAtivo = false;
